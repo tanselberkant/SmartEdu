@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const pageRoute = require('./routes/pageRoute');
-const couseRouter = require('./routes/courseRoute');
+const courseRouter = require('./routes/courseRoute');
+const categoryRouter = require('./routes/categoryRoute');
 
 const app = express();
 
@@ -28,7 +29,8 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 
 // ROUTES
 app.use('/', pageRoute);
-app.use('/courses',couseRouter);
+app.use('/courses',courseRouter);
+app.use('/category',categoryRouter);
 
 const port = 3000;
 app.listen(port, () => {
