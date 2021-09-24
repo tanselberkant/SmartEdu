@@ -40,3 +40,9 @@ exports.loginUser = (req, res) => {
     });
   }
 };
+
+exports.logOutUser = (req, res) => {
+  req.session.destroy(() => {
+    res.redirect('/');
+  });
+};
