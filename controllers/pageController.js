@@ -15,3 +15,9 @@ exports.getRegisterPage = (req, res) => {
     page_name: 'register',
   });
 };
+
+exports.getLoginPge = (req, res) => {
+  res.status(200).render('login', {
+    page_name: 'login',
+  });
+};
