@@ -62,7 +62,7 @@ app.use('*', (req, res, next) => {
 });
 app.use('/', pageRoute);
 app.use('/courses', courseRouter);
-app.use('/category', categoryRouter);
+app.use('/categories', categoryRouter);
 app.use('/users', userRoute);
 
 const port = 3000;

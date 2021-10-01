@@ -1,9 +1,21 @@
 const nodemailer = require('nodemailer');
+const Course = require('../models/Course');
+const User = require('../models/User');
 
-exports.getIndexPage = (req, res) => {
+exports.getIndexPage = async (req, res) => {
   // console.log(req.session.userID);
+
+  const courses = await Course.find().sort('-createdAt').limit(2);
+  const totalCourses = await Course.find().countDocuments();
+  const totalStudents = await User.countDocuments({ role: 'student' });
+  const totalTeachers = await User.countDocuments({ role: 'teacher' });
+
   res.status(200).render('index', {
     page_name: 'index',
+    courses,
+    totalCourses,
+    totalStudents,
+    totalTeachers,
   });
 };
 
@@ -33,7 +45,6 @@ exports.getContactPage = (req, res) => {
 
 exports.sendEmail = async (req, res) => {
   try {
-
     const outputMessage = `
   <h1> Mail Details </h1>
   <ul>
@@ -72,7 +83,6 @@ exports.sendEmail = async (req, res) => {
     req.flash('success', 'We received your message successfully');
 
     return res.status(200).redirect('/contact');
-
   } catch (err) {
     // req.flash('error', `Something bad happened! ${err}`);
     req.flash('error', `Something bad happened! `);
