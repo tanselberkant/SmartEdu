@@ -7,6 +7,8 @@ I worked on
 - CRUD Operations
 - Admin Dashboard
 - User Dashboard 
+- Register & Login
+- Validation
 - Sending Email
 - Url slug
 
